@@ -14,7 +14,7 @@ client.on('ready', () => {
 client.login(process.env.TOKEN) // login
 
 client.on('message', message => {
-  const prefix = process.enve.PREFIX // set prefix
+  const prefix = process.env.PREFIX // set prefix
   if (!message.author.bot && message.content.startsWith(prefix)) { // check if sent by self & check for prefix
     const args = message.content.slice(prefix.length).trim().split(' ');
     const command = args.shift().toLowerCase()
