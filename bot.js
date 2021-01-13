@@ -1,7 +1,7 @@
 // imports
 require('dotenv').config()
 const Discord = require('discord.js')
-const { exec } = require("child_process")
+const { exec, spawn } = require("child_process")
 
 const client = new Discord.Client() // create client
 client.on('ready', () => {
@@ -29,7 +29,7 @@ client.on('message', message => {
                 message.channel.send(`stderr: ${stderr}`)
                 return
             }
-            message.channel.send(`stdout: ${stdout}`)
+            message.channel.send(`\`\`\`${stdout}\`\`\``)
         })
     } else if (command === 'ip') {
         exec("ip -4 a", (error, stdout, stderr) => {
@@ -41,9 +41,21 @@ client.on('message', message => {
                 message.channel.send(`stderr: ${stderr}`)
                 return
             }
-            message.channel.send(`stdout: ${stdout}`)
+            message.channel.send(`${stdout}`)
+        }); 
+    } else if (command === 'ping') {
+        exec(`ping -c 5 ${process.env.IP}`, (error, stdout, stderr) => {
+            if (error) {
+                message.channel.send(`error: ${error.message}`)
+                return
+            }
+            if (stderr) {
+                message.channel.send(`stderr: ${stderr}`)
+                return
+            }
+            message.channel.send(`${stdout}`)
         }); 
     } else { 
-        message.channel.send('Invalid command')
+        message.channel.send('wol | ip | ping')
     }
 }})
