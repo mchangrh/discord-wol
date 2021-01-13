@@ -41,7 +41,7 @@ client.on('message', message => {
                 message.channel.send(`stderr: ${stderr}`)
                 return
             }
-            message.channel.send(`${stdout}`)
+            message.channel.send(`\`\`\`${stdout}\`\`\``)
         }); 
     } else if (command === 'ping') {
         exec(`ping -c 5 ${process.env.IP}`, (error, stdout, stderr) => {
@@ -53,7 +53,7 @@ client.on('message', message => {
                 message.channel.send(`stderr: ${stderr}`)
                 return
             }
-            message.channel.send(`${stdout}`)
+            message.channel.send(`\`\`\`${stdout}\`\`\``)
         }); 
     } else { 
         message.channel.send('wol | ip | ping')
