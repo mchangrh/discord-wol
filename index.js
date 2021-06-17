@@ -15,7 +15,7 @@ function execute(command, channel) {
   exec(command, (err, stdout, stderr) => {
     if (err) return channel.send(`error: ${err.message}`)
     if (stderr) return channel.send(`stderr: ${stderr}`)
-    channel.send(`\`\`\`${stdout}\`\`\``)
+    channel.send('```'+stdout+'```')
   })
 }
 
